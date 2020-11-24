@@ -1,8 +1,10 @@
 FROM alpine:edge as builder
 
-LABEL maintainer="metowolf <i@i-meto.com>"
+LABEL maintainer="albert"
 
 ENV SNELL_VERSION 2.0.3
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 RUN apk update \
   && apk add --no-cache \
@@ -17,6 +19,8 @@ RUN apk update \
 FROM alpine:3.9
 
 LABEL maintainer="Albert"
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
 ENV GLIBC_VERSION 2.29-r0
 
